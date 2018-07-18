@@ -4,27 +4,37 @@ import { GEODB_USER_TOKEN, GEODB_API_KEY } from '../../config'
 import Geodb from 'geodb'
 import 'websocket'
 
-const getUserCoord = () =>
-  new Promise((resolve, reject) =>
-    navigator.geolocation.getCurrentPosition(x => resolve(x.coords), reject)
-  )
-
 const CHANNEL = '#food'
 
 export const withSubscription = C =>
   class WithSubscription extends Component {
-    state = { connected: false, events: [], location: null }
+    state = { connected: false, events: [] }
 
     geodb = null
+
+    onSubscribeCallback = (error, data, metadata) => {
+      if (error) console.log(error)
+
+      if (
+        data.location &&
+        !this.state.events.some(x => x.key === data.payload.key)
+      )
+        this.setState({
+          events: [
+            ...this.state.events,
+            {
+              location: data.location,
+              food: data.payload.food,
+              key: data.payload.key,
+            },
+          ],
+        })
+    }
 
     async componentDidMount() {
       this.geodb = Geodb.api
 
-      this.geodb.init({
-        host: 'geodb.io',
-        type: 'ws',
-        protocol: 'https',
-      })
+      this.geodb.init({ host: 'geodb.io', type: 'ws', protocol: 'https' })
 
       this.geodb.on('error', err => console.log(err))
 
@@ -38,32 +48,9 @@ export const withSubscription = C =>
         })
       })
 
-      const location = await getUserCoord()
-        .then(x => ({ lat: x.latitude, lon: x.longitude, radius: '50km' }))
-        .catch(error => console.log(error) || null)
-
-      this.setState({ location })
-
       this.geodb.subscribe(
-        { channel: CHANNEL, location },
-        (error, data, metadata) => {
-          if (error) console.log(error)
-
-          if (
-            data.location &&
-            !this.state.events.some(x => x.key === data.payload.key)
-          )
-            this.setState({
-              events: [
-                ...this.state.events,
-                {
-                  location: data.location,
-                  food: data.payload.food,
-                  key: data.payload.key,
-                },
-              ],
-            })
-        }
+        { channel: CHANNEL, location: this.props.location },
+        this.onSubscribeCallback
       )
 
       this.setState({ connected: true })
@@ -78,7 +65,7 @@ export const withSubscription = C =>
         events: [
           ...this.state.events,
           {
-            location: this.state.location,
+            location: this.props.location,
             food,
             key,
           },
@@ -87,12 +74,9 @@ export const withSubscription = C =>
 
       this.geodb.publish(
         {
-          payload: {
-            key,
-            food,
-          },
+          payload: { key, food },
           channel: CHANNEL,
-          location: this.state.location,
+          location: this.props.location,
         },
         (err, data, metadata) => {
           if (err) console.log(err)
@@ -101,12 +85,6 @@ export const withSubscription = C =>
     }
 
     render() {
-      return (
-        <C
-          {...this.state}
-          {...this.props}
-          publish={this.state.connected && this.publish}
-        />
-      )
+      return <C {...this.state} {...this.props} publish={this.publish} />
     }
   }

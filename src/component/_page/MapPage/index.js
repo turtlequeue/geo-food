@@ -3,7 +3,7 @@ import { SendBar } from '../../SendBar'
 import { GMap } from '../../GMap'
 import styled from 'react-emotion'
 
-export const MapPage = ({ connected, events, location, ...props }) => (
+export const MapPage = ({ events, location, ...props }) => (
   <Container>
     <MapWrapper>
       <GMap location={location} events={events} />
