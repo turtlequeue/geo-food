@@ -41,7 +41,8 @@ jobs:
     <<: *node_config
     steps:
 
-      - attach_workspace
+      - attach_workspace:
+          at: .
 
       - run:
           name: deploy
