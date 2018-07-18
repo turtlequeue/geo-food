@@ -31,6 +31,7 @@ jobs:
           command: |
             rm dist/stats.json
             mv .circleci dist/.circleci
+            mv src/asset/screenshot/* dist
 
       - persist_to_workspace:
           root: *workspace_root
