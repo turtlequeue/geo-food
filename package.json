@@ -1,0 +1,38 @@
+{
+  "name": "geo-food",
+  "version": "0.0.1",
+  "dependencies": {
+    "emotion": "9.2.6",
+    "geodb": "https://geodb.io/vendors/geodb/js/geodb.tgz",
+    "react": "16.4.1",
+    "react-dom": "16.4.1",
+    "react-emotion": "9.2.6"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.0.0-beta.54",
+    "@babel/core": "7.0.0-beta.54",
+    "@babel/plugin-proposal-class-properties": "7.0.0-beta.54",
+    "@babel/plugin-proposal-object-rest-spread": "7.0.0-beta.54",
+    "@babel/plugin-transform-modules-commonjs": "7.0.0-beta.54",
+    "@babel/plugin-transform-react-jsx": "7.0.0-beta.54",
+    "@babel/plugin-transform-runtime": "7.0.0-beta.54",
+    "@babel/preset-env": "7.0.0-beta.54",
+    "@babel/preset-react": "7.0.0-beta.54",
+    "@babel/runtime": "7.0.0-beta.54",
+    "babel-loader": "8.0.0-beta.3",
+    "babel-plugin-emotion": "9.2.6",
+    "babel-plugin-transform-inline-environment-variables": "0.4.3",
+    "file-loader": "1.1.11",
+    "prettier": "1.13.7",
+    "webpack": "4.16.1",
+    "webpack-assets-manifest": "3.0.1",
+    "webpack-cli": "3.0.8",
+    "webpack-dev-server": "3.1.4"
+  },
+  "scripts": {
+    "start":
+      "webpack-dev-server --mode development --config ./script/webpack.config.js",
+    "build":
+      "rm -rf dist && mkdir dist && NODE_ENV=production webpack --config ./script/webpack.config.js --mode production --json > dist/stats.json && node ./script/rewriteFileName.js"
+  }
+}
