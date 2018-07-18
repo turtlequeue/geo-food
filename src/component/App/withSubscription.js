@@ -6,6 +6,8 @@ import 'websocket'
 
 const CHANNEL = '#food'
 
+const wait = delay => new Promise(resolve => setTimeout(resolve, delay))
+
 export const withSubscription = C =>
   class WithSubscription extends Component {
     state = { connected: false, events: [] }
@@ -47,6 +49,8 @@ export const withSubscription = C =>
           apiKey: GEODB_API_KEY,
         })
       })
+
+      await wait(200)
 
       this.geodb.subscribe(
         { channel: CHANNEL, location: this.props.location },

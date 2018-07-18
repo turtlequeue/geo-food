@@ -35,11 +35,9 @@ class GMap_ extends Component {
         panControl: false,
         draggable: false,
         zoom: 15,
-        center: this.props.location
-          ? createLatLng(this.props.location)
-          : new google.maps.LatLng(-33.91722, 151.23064),
+        center: createLatLng(this.props.location),
         mapTypeId: 'roadmap',
-        background: '#aaa',
+        background: '#ddd',
         styles: gmapStyles,
       })
     }
@@ -85,11 +83,11 @@ class GMap_ extends Component {
               [
                 {
                   offset: 0,
-                  opacity: 0,
+                  opacity: 0.6,
                   transform: 'translate3d(0,0,0) scale(0.2,0.2)',
                 },
                 {
-                  offset: 0.03,
+                  offset: 0.032,
                   opacity: 1,
                   transform: 'translate3d(0,-50px,0) scale(1.3,1.3)',
                 },

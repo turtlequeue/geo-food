@@ -2,7 +2,13 @@ import React, { Component } from 'react'
 
 const getUserCoord = () =>
   new Promise((resolve, reject) =>
-    navigator.geolocation.getCurrentPosition(x => resolve(x.coords), reject)
+    navigator.geolocation.getCurrentPosition(
+      x => resolve(x.coords),
+      err => reject(err),
+      {
+        timeout: 10000,
+      }
+    )
   )
 
 const defaultLocation = {
@@ -13,14 +19,14 @@ const defaultLocation = {
 
 export const withLocation = C =>
   class WithLocation extends Component {
-    state = { location: defaultLocation, isDefaultLocation: true }
+    state = { location: defaultLocation, located: false }
 
     async componentDidMount() {
       const location = await getUserCoord()
         .then(x => ({ lat: x.latitude, lon: x.longitude, radius: '50km' }))
-        .catch(error => console.log(error) || null)
+        .catch(error => console.log(error) || defaultLocation)
 
-      this.setState({ location })
+      this.setState({ location, located: true })
     }
 
     render() {
