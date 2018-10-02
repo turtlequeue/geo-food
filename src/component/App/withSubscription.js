@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { GEODB_USER_TOKEN, GEODB_API_KEY } from '../../config'
+import { TURTLEQUEUE_USER_TOKEN, TURTLEQUEUE_API_KEY } from '../../config'
 
-import Geodb from 'geodb'
+// the "create" API allows instanciating several turtle instances
+import {create as turtle} from 'turtlequeue'
 import 'websocket'
 
 const CHANNEL = '#food'
@@ -12,7 +13,7 @@ export const withSubscription = C =>
   class WithSubscription extends Component {
     state = { connected: false, events: [] }
 
-    geodb = null
+    turtle = null;
 
     onSubscribeCallback = (error, data, metadata) => {
       if (error) console.log(error)
@@ -34,25 +35,25 @@ export const withSubscription = C =>
     }
 
     async componentDidMount() {
-      this.geodb = Geodb.api
 
-      this.geodb.init({ host: 'geodb.io', type: 'ws', protocol: 'https' })
+      // make a turtle instance for this react component
+      this.turtle = turtle.make({ host: 'turtlequeue.com', type: 'ws', protocol: 'https' })
 
-      this.geodb.on('error', err => console.log(err))
+      this.turtle.on('error', err => console.log(err))
 
       await new Promise((resolve, reject) => {
-        this.geodb.on('connect', resolve)
-        this.geodb.on('error', reject)
+        this.turtle.on('connect', resolve)
+        this.turtle.on('error', reject)
 
-        this.geodb.connect({
-          userToken: GEODB_USER_TOKEN,
-          apiKey: GEODB_API_KEY,
+        this.turtle.connect({
+          userToken: TURTLEQUEUE_USER_TOKEN,
+          apiKey: TURTLEQUEUE_API_KEY,
         })
       })
 
       await wait(200)
 
-      this.geodb.subscribe(
+      this.turtle.subscribe(
         { channel: CHANNEL, location: this.props.location },
         this.onSubscribeCallback
       )
@@ -76,7 +77,7 @@ export const withSubscription = C =>
         ],
       })
 
-      this.geodb.publish(
+      this.turtle.publish(
         {
           payload: { key, food },
           channel: CHANNEL,

@@ -53,6 +53,7 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.EnvironmentPlugin(['NODE_ENV', 'DEBUG', 'TURTLEQUEUE_USER_TOKEN', 'TURTLEQUEUE_API_KEY', 'GMAP_API_KEY']),
     new WebpackAssetsManifest({
       output: path.resolve(__dirname, '../dist', 'assetManifest.json'),
     }),

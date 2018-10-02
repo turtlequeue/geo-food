@@ -1,6 +1,9 @@
 import React from 'react'
 import { food_image, FoodIcon } from '../../FoodIcon'
-import styled, { keyframes } from 'react-emotion'
+import styled from '@emotion/styled'
+import keyframes from '@emotion/keyframes'
+import css from '@emotion/css'
+
 
 export const WaitingPage = ({ connected, events, location, ...props }) => (
   <Container>

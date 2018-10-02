@@ -1,7 +1,7 @@
 import React from 'react'
 import { SendBar } from '../../SendBar'
 import { GMap } from '../../GMap'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
 export const MapPage = ({ events, location, ...props }) => (
   <Container>
