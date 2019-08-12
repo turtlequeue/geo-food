@@ -79,7 +79,7 @@ export const withSubscription = C =>
 
       this.turtle.publish(
         {
-          payload: { key, food },
+          payload: { key, food, location: this.props.location },
           channel: CHANNEL,
           location: this.props.location,
         },
