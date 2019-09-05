@@ -15,7 +15,7 @@ module.exports = {
 
   output: {
     path: path.join(__dirname, '../dist'),
-    filename: production ? '[name]-[hash:8].js' : '[name].js',
+    filename: '[name].js',
     publicPath: process.env.PATHNAME_BASE || '/',
   },
 
@@ -44,10 +44,7 @@ module.exports = {
 
       {
         test: [/\.bmp/, /\.gif/, /\.jpe?g/, /\.png/, /\.svg/],
-        loader: 'file-loader',
-        options: {
-          name: production ? '[hash:8].[ext]' : '[name].[hash:8].[ext]',
-        },
+        loader: 'file-loader'
       },
     ],
   },
@@ -58,8 +55,6 @@ module.exports = {
       output: path.resolve(__dirname, '../dist', 'assetManifest.json'),
     }),
   ],
-
-  devtool: production ? 'source-map' : false,
 
   devServer: {
     port: 8082,

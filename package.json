@@ -9,7 +9,7 @@
     "emotion": "10.0.14",
     "react": "16.9.0",
     "react-dom": "16.9.0",
-    "turtlequeue": "0.0.2"
+    "turtlequeue": "0.0.4"
   },
   "devDependencies": {
     "@babel/cli": "7.5.5",
@@ -34,6 +34,6 @@
   },
   "scripts": {
     "start": "webpack-dev-server --mode development --config ./script/webpack.config.js",
-    "build": "rm -rf dist && mkdir dist && NODE_ENV=production webpack --config ./script/webpack.config.js --mode production --json > dist/stats.json && node ./script/rewriteFileName.js"
+    "build": "rm -rf dist && mkdir dist && NODE_ENV=production webpack --config ./script/webpack.config.js --mode production --json > dist/stats.json"
   }
 }
