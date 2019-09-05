@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { GMAP_API_KEY } from '../../config'
 
-const googleMapURL = `https://maps.googleapis.com/maps/api/js?v=3.33&key=${GMAP_API_KEY}`
+const googleMapURL = `https://maps.googleapis.com/maps/api/js?v=3.37&key=${GMAP_API_KEY}`
 
 let scriptLoaded = false
 

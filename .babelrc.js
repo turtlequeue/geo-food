@@ -3,11 +3,10 @@ const plugins = [
     'babel-plugin-transform-inline-environment-variables',
     {
       include: [
-        //
         'NODE_ENV',
         'VERSION',
-        'GEODB_USER_TOKEN',
-        'GEODB_API_KEY',
+        'TURTLEQUEUE_USER_TOKEN',
+        'TURTLEQUEUE_API_KEY',
         'GMAP_API_KEY',
       ],
     },
@@ -27,9 +26,7 @@ if (process.env.NODE_ENV === 'production') {
     '@babel/plugin-transform-runtime',
     {
       helpers: false,
-      polyfill: false,
-      regenerator: true,
-      moduleName: '@babel/runtime',
+      regenerator: true
     },
   ])
 }

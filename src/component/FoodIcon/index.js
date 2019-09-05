@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
 import pizza from '../../asset/image/1f32e.png'
 import burrito from '../../asset/image/1f32f.png'

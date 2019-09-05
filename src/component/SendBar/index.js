@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import { food_image, FoodIcon } from '../FoodIcon'
 
 export const SendBar = ({ publish }) => (
