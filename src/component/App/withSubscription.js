@@ -20,7 +20,7 @@ export const withSubscription = C =>
 
       if (
         data.location &&
-        !this.state.events.some(x => x.key === data.payload.key)
+        !this.state.events.some(x => x.key === data.key)
       )
         this.setState({
           events: [...this.state.events, data]
