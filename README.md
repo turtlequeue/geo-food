@@ -2,10 +2,6 @@
 
 ![](http://turtlequeue.github.io/geo-food/demo.gif)
 
-# Demo
-
-[turtlequeue.github.io/geo-food](http://turtlequeue.github.io/geo-food)
-
 
 # Run locally
 
