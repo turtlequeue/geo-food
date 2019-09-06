@@ -26,18 +26,13 @@ jobs:
 
       - run: yarn build
 
-      - run:
-          name: prepare dist
-          command: |
-            rm dist/stats.json
-            mv .circleci dist/.circleci
-            mv src/asset/screenshot/* dist
 
       - persist_to_workspace:
           root: *workspace_root
           paths:
             - dist
 
+# NOTE: deploy now in netflify
   deploy:
     <<: *node_config
     steps:
