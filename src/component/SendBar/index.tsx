@@ -1,6 +1,6 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { food_image, FoodIcon } from '../FoodIcon'
+import React from "react";
+import styled from "@emotion/styled";
+import { food_image, FoodIcon } from "../FoodIcon";
 
 export const SendBar = ({ publish }) => (
   <Container>
@@ -10,7 +10,7 @@ export const SendBar = ({ publish }) => (
       ))}
     </GroupButton>
   </Container>
-)
+);
 
 const FoodButton = styled(FoodIcon)`
   cursor: pointer;
@@ -25,12 +25,12 @@ const FoodButton = styled(FoodIcon)`
     transition: none;
     transform: scale(0.94, 0.94);
   }
-`
+`;
 
 const GroupButton = styled.div`
   display: flex;
   flex-direction: row;
-`
+`;
 
 const Container = styled.div`
   display: flex;
@@ -42,4 +42,4 @@ const Container = styled.div`
   left: 0;
   z-index: 10;
   padding: 4px;
-`
+`;

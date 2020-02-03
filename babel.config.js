@@ -1,4 +1,14 @@
+const fs = require("fs");
 const path = require("path");
+
+const getEnvFile = () => {
+  try {
+    fs.statSync(path.resolve(__dirname, "./.env"));
+    return path.resolve(__dirname, "./.env");
+  } catch (err) {
+    return path.resolve(__dirname, "./.env.sample");
+  }
+};
 
 const getConfig = env => {
   const plugins = [
@@ -7,7 +17,7 @@ const getConfig = env => {
     [
       "babel-plugin-inline-dotenv",
       {
-        path: path.resolve(__dirname, "./.env"),
+        path: getEnvFile(),
         systemVar: "overwrite"
       }
     ]

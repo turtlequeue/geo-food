@@ -7,7 +7,7 @@ const production = process.env.NODE_ENV === "production";
 
 module.exports = {
   entry: {
-    index: [path.join(__dirname, "../src/index.js")]
+    index: [path.join(__dirname, "../src/index.tsx")]
   },
 
   output: {
@@ -16,10 +16,14 @@ module.exports = {
     publicPath: process.env.PATHNAME_BASE || "/"
   },
 
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"]
+  },
+
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|ts|tsx)$/,
         use: [
           {
             loader: "babel-loader"
