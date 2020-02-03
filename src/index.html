@@ -1,25 +1,38 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="manifest" href="/manifest.json" />
-<link rel="icon" sizes="16x16" href="/icon16x16.png" />
-<link rel="icon" sizes="32x32" href="/icon32x32.png" />
-<link rel="icon" sizes="192x192" href="/icon192x192.png" />
-<meta name="theme-color" content="#ddd" />
-<style>
-html,
-body {
-  margin: 0;
-  background-color: #ddd;
-}
-</style>
-</head>
-<body>
-<noscript>
-  <div style="height:100%;display:flex;justify-content:center;align-items:center;color:white;overflow:hidden">Your browser does not support JavaScript!</div>
-</noscript>
-<div id="app"></div>
-<script async src="/index.js"></script>
-</body>
+  <head>
+    <title><%= title %></title>
+    <description><%= description %></description>
+    <meta name="title" content="<%= title %>" />
+    <meta name="description" content="<%= description %>" />
+    <meta name="author" content="<%= author.name %>" />
+
+    <style>
+      #app,
+      html,
+      body {
+        height: 100%;
+        position: relative;
+        margin: 0;
+        background-color: #ddd;
+        font-family: Lato, Avenir Next, Helvetica Neue, sans-serif;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>
+      <div
+        style="height:100%;display:flex;justify-content:center;align-items:center;color:white;overflow:hidden"
+      >
+        Your browser does not support JavaScript!
+      </div>
+    </noscript>
+    <div id="app"></div>
+  </body>
 </html>
