@@ -4,11 +4,16 @@ import { food_image_small } from "../FoodIcon";
 import { useGoogleApi } from "../_hook/useGoogleApi";
 
 export const GMap = ({ events, center, googleApiKey }) => {
+  // ref to the map container
   const ref = useRef(null as any);
+
+  // keep track of existing markers
   const marked = useRef({});
 
+  // load google gmap api
   const googleApi = useGoogleApi(googleApiKey);
 
+  // instanciate map
   const map = useMemo(() => {
     if (!ref.current) return;
     if (!googleApi) return;
@@ -23,7 +28,7 @@ export const GMap = ({ events, center, googleApiKey }) => {
       zoomControl: false,
       panControl: false,
       draggable: false,
-      zoom: 6,
+      zoom: 8,
       center: new googleApi.maps.LatLng(center.lat, center.lon),
       mapTypeId: "roadmap",
       background: "#ddd",
@@ -31,6 +36,7 @@ export const GMap = ({ events, center, googleApiKey }) => {
     });
   }, [ref.current, googleApi]);
 
+  // re-center
   useEffect(() => {
     if (!map) return;
     if (!center) return;
@@ -38,6 +44,7 @@ export const GMap = ({ events, center, googleApiKey }) => {
     map.setCenter(new googleApi.maps.LatLng(center.lat, center.lon));
   }, [center, map]);
 
+  // add new markers
   useEffect(() => {
     if (!map) return;
 
@@ -76,8 +83,10 @@ const addMarker = async (
 
   const elements = document.querySelectorAll(`[src="${url}"]`);
 
-  elements.forEach(el =>
-    el.parentNode.animate(
+  elements.forEach(el => {
+    if (!el.parentElement) return;
+
+    el.parentElement.animate(
       [
         {
           offset: 0,
@@ -111,8 +120,8 @@ const addMarker = async (
         }
       ],
       { duration: 7400 }
-    )
-  );
+    );
+  });
 
   await wait(2000);
 

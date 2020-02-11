@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const getUserCoord = () =>
+const getUserCoord = (): Promise<Coordinates> =>
   new Promise((resolve, reject) =>
     navigator.geolocation.getCurrentPosition(
       x => resolve(x.coords),

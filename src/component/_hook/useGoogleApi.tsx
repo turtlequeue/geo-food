@@ -12,7 +12,7 @@ const loadScript = apiKey =>
     document.body.appendChild(script);
   });
 
-let loadScriptPromise;
+let loadScriptPromise: Promise<void>;
 
 export const useGoogleApi = apiKey => {
   const [loaded, setLoaded] = useState(false);

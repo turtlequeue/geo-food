@@ -12,8 +12,6 @@ const getEnvFile = () => {
 
 const getConfig = env => {
   const plugins = [
-    "@babel/plugin-proposal-class-properties",
-
     [
       "babel-plugin-inline-dotenv",
       {
@@ -30,10 +28,6 @@ const getConfig = env => {
 
     "@babel/preset-react"
   ];
-
-  if (process.env.NODE_ENV === "test") {
-    plugins.push("@babel/plugin-transform-modules-commonjs");
-  }
 
   return { plugins, presets };
 };

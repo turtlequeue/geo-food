@@ -3,13 +3,13 @@ import { SendBar } from "../../SendBar";
 import { GMap } from "../../GMap";
 import styled from "@emotion/styled";
 
-export const MapPage = ({ events, location, googleApiKey, ...props }) => (
+export const MapPage = ({ events, location, googleApiKey, publish }) => (
   <Container>
     <MapWrapper>
       <GMap center={location} events={events} googleApiKey={googleApiKey} />
     </MapWrapper>
 
-    <SendBar {...props} />
+    <SendBar publish={publish} />
   </Container>
 );
 

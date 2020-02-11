@@ -14,18 +14,14 @@ const GMAP_API_KEY = process.env.GMAP_API_KEY as string;
 export const App = () => {
   const googleMapReady = useGoogleApi(GMAP_API_KEY);
   const { location } = useLocation();
-  const { connected, events, publish } = useSubscription(
+  const { events, status, publish } = useSubscription(
     TURTLEQUEUE_USER_TOKEN,
     TURTLEQUEUE_API_KEY,
     TURTLEQUEUE_CHANNEL,
     location
   );
 
-  if (
-    !googleMapReady
-    // || !connected
-  )
-    return <WaitingPage />;
+  if (!googleMapReady || status !== "ready") return <WaitingPage />;
 
   return (
     <MapPage
