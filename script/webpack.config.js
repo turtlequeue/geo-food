@@ -12,7 +12,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, "../dist"),
     filename: "[name].js",
-    publicPath: process.env.PATHNAME_BASE || "/"
+    publicPath: process.env.PUBLIC_PATH || "/"
   },
 
   resolve: {

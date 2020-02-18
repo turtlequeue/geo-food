@@ -36,7 +36,7 @@
   },
   "scripts": {
     "type": "tsc --noEmit",
-    "lint": "yarn prettier -c '**/*.{ts,tsx,js,jsx,json,md}' '!.next/**'",
+    "lint": "yarn prettier -c '**/*.{ts,tsx,js,jsx,json,md}' '!dist/**'",
     "dev": "webpack-dev-server --mode development --config ./script/webpack.config.js",
     "build": "NODE_ENV=production webpack --mode production --config ./script/webpack.config.js"
   }
