@@ -1,17 +1,17 @@
-import React from 'react'
-import { SendBar } from '../../SendBar'
-import { GMap } from '../../GMap'
-import styled from '@emotion/styled'
+import React from "react";
+import { SendBar } from "../../SendBar";
+import { GMap } from "../../GMap";
+import styled from "@emotion/styled";
 
-export const MapPage = ({ events, location, ...props }) => (
+export const MapPage = ({ events, location, googleApiKey, publish }) => (
   <Container>
     <MapWrapper>
-      <GMap location={location} events={events} />
+      <GMap center={location} events={events} googleApiKey={googleApiKey} />
     </MapWrapper>
 
-    <SendBar {...props} />
+    <SendBar publish={publish} />
   </Container>
-)
+);
 
 const Container = styled.div`
   position: relative;
@@ -21,7 +21,7 @@ const Container = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-`
+`;
 const MapWrapper = styled.div`
   position: absolute;
   width: 100%;
@@ -30,4 +30,4 @@ const MapWrapper = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-`
+`;

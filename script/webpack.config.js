@@ -1,67 +1,64 @@
-const fs = require('fs')
-const path = require('path')
-const webpack = require('webpack')
-const WebpackAssetsManifest = require('webpack-assets-manifest')
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const pkg = require("../package.json");
 
-const production = process.env.NODE_ENV === 'production'
+const production = process.env.NODE_ENV === "production";
 
 module.exports = {
   entry: {
-    index: [
-      path.join(__dirname, '../src/index.js'),
-      path.join(__dirname, '../src/index.html'),
-    ],
+    index: [path.join(__dirname, "../src/index.tsx")]
   },
 
   output: {
-    path: path.join(__dirname, '../dist'),
-    filename: '[name].js',
-    publicPath: process.env.PATHNAME_BASE || '/',
+    path: path.join(__dirname, "../dist"),
+    filename: "[name].js",
+    publicPath: process.env.PUBLIC_PATH || "/"
+  },
+
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"]
   },
 
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|ts|tsx)$/,
         use: [
           {
-            loader: 'babel-loader',
-          },
-        ],
-      },
-
-      {
-        test: [/\.html?$/],
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-            },
-          },
-        ],
+            loader: "babel-loader"
+          }
+        ]
       },
 
       {
         test: [/\.bmp/, /\.gif/, /\.jpe?g/, /\.png/, /\.svg/],
-        loader: 'file-loader'
-      },
-    ],
+        loader: "file-loader"
+      }
+    ]
   },
 
   plugins: [
-    new webpack.EnvironmentPlugin(['NODE_ENV', 'DEBUG', 'TURTLEQUEUE_USER_TOKEN', 'TURTLEQUEUE_API_KEY', 'GMAP_API_KEY']),
-    new WebpackAssetsManifest({
-      output: path.resolve(__dirname, '../dist', 'assetManifest.json'),
-    }),
-  ],
-
-  devServer: {
-    port: 8082,
-    contentBase: [path.resolve(__dirname, '../dist')],
-    historyApiFallback: true,
-    watchOptions: {
-      ignored: /node_modules/,
-    },
-  },
-}
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, "../src/index.html"),
+      filename: "index.html",
+      title: pkg.name,
+      hash: true,
+      meta: {
+        viewport: "width=device-width, initial-scale=1, shrink-to-fit=no"
+      },
+      templateParameters: {
+        title: pkg.name,
+        author: pkg.author,
+        description: pkg.description
+      },
+      minify: production && {
+        collapseWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true
+      }
+    })
+  ]
+};
