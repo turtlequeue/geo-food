@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { food_image, FoodIcon } from "../FoodIcon";
+import { food_image_small, FoodIcon } from "../FoodIcon";
 
 export const SendBar = ({ publish }) => (
   <Container>
     <GroupButton>
-      {Object.keys(food_image).map(food => (
+      {Object.keys(food_image_small).map(food => (
         <FoodButton key={food} food={food} onClick={() => publish(food)} />
       ))}
     </GroupButton>

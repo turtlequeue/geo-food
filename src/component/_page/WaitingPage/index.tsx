@@ -1,46 +1,50 @@
 import React from "react";
-import { food_image, FoodIcon } from "../../FoodIcon";
+import { food_image_small, FoodIcon } from "../../FoodIcon";
 import styled from "@emotion/styled";
 import { keyframes } from "@emotion/core";
 
 export const WaitingPage = () => (
   <Container>
     <Center>
-      {Object.keys(food_image).map((food, i) => (
+      {Object.keys(food_image_small).map((food, i) => (
         <Ball key={food} food={food} i={i} />
       ))}
     </Center>
   </Container>
 );
 
-const rotateAnim = Array.from(Object.keys(food_image)).map((_, i, arr) => {
-  const frames = Array.from({ length: 20 })
-    .map((_, j, arr2) => {
-      const a = i / arr.length;
-      const b = j / (arr2.length - 1);
+const rotateAnim = Array.from(Object.keys(food_image_small)).map(
+  (_, i, arr) => {
+    const frames = Array.from({ length: 20 })
+      .map((_, j, arr2) => {
+        const a = i / arr.length;
+        const b = j / (arr2.length - 1);
 
-      const phy = (a + b) * Math.PI * 2;
-      const A = 50;
+        const phy = (a + b) * Math.PI * 2;
+        const A = 50;
 
-      // const s = (1 + Math.sin(a + b + 123)) * 1
-      const k = (b + a + 0.75) % 1;
-      const s = 0.2 + Math.abs(k - 0.5) * 2.8;
+        // const s = (1 + Math.sin(a + b + 123)) * 1
+        const k = (b + a + 0.75) % 1;
+        const s = 0.2 + Math.abs(k - 0.5) * 2.8;
 
-      const fl = x => Math.round(x * 100) / 100;
+        const fl = x => Math.round(x * 100) / 100;
 
-      return [
-        Math.round(b * 100) + "%",
-        "{",
-        "transform:",
-        `translate3d(${fl(Math.cos(phy) * A)}px,${fl(Math.sin(phy) * A)}px,0)`,
-        `scale(${s},${s})`,
-        "}"
-      ].join(" ");
-    })
-    .join("\n");
+        return [
+          Math.round(b * 100) + "%",
+          "{",
+          "transform:",
+          `translate3d(${fl(Math.cos(phy) * A)}px,${fl(
+            Math.sin(phy) * A
+          )}px,0)`,
+          `scale(${s},${s})`,
+          "}"
+        ].join(" ");
+      })
+      .join("\n");
 
-  return keyframes`${frames}`;
-});
+    return keyframes`${frames}`;
+  }
+);
 
 const Ball = styled(FoodIcon)`
   width: 50px;

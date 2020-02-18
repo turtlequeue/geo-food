@@ -67,7 +67,7 @@ const addMarker = async (
   map,
   { key, food, location: { lat, lon } }
 ) => {
-  const url = food_image_small[food] + `?key=${key}`;
+  const url = food_image_small[food] + `#key=${key}`;
 
   const marker = new googleApi.maps.Marker({
     position: { lat: lat, lng: lon },

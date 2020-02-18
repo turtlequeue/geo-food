@@ -25,7 +25,7 @@ export const food_image_small = {
 };
 
 export const FoodIcon = ({ food, ...props }) => (
-  <Img {...props} alt={`${food} icon`} src={food_image[food]} />
+  <Img {...props} alt={`${food} icon`} src={food_image_small[food]} />
 );
 
 const Img = styled.img`
