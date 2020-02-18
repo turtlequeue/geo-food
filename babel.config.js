@@ -29,6 +29,22 @@ const getConfig = env => {
     "@babel/preset-react"
   ];
 
+  if (env === "production")
+    presets.push([
+      "@babel/preset-env",
+      {
+        targets: {
+          firefox: "70",
+          chrome: "79",
+          edge: "18",
+          safari: "13",
+          ios: "13"
+        },
+        useBuiltIns: false,
+        modules: false
+      }
+    ]);
+
   return { plugins, presets };
 };
 
