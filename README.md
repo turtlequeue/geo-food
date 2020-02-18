@@ -5,7 +5,7 @@
 
 > Tasty demo for turtlequeue event subscription sdk 🌯
 
-![](http://turtlequeue.github.io/geo-food/demo.gif)
+![](./src/asset/screenshot/demo.gif)
 
 # Usage
 
