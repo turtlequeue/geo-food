@@ -7,6 +7,7 @@
     "email": "me@platane.me",
     "twitter": "platane_"
   },
+  "repository": "github:turtlequeue/geo-food",
   "dependencies": {
     "@emotion/core": "10.0.27",
     "@emotion/styled": "10.0.27",
@@ -25,7 +26,6 @@
     "@types/react-dom": "16.9.5",
     "babel-loader": "8.0.6",
     "babel-plugin-inline-dotenv": "1.5.0",
-    "clean-webpack-plugin": "3.0.0",
     "file-loader": "5.0.2",
     "html-webpack-plugin": "3.2.0",
     "prettier": "1.19.1",
@@ -38,6 +38,6 @@
     "type": "tsc --noEmit",
     "lint": "yarn prettier -c '**/*.{ts,tsx,js,jsx,json,md}' '!.next/**'",
     "dev": "webpack-dev-server --mode development --config ./script/webpack.config.js",
-    "build": "webpack --mode production --config ./script/webpack.config.js"
+    "build": "NODE_ENV=production webpack --mode production --config ./script/webpack.config.js"
   }
 }
