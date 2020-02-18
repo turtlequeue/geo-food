@@ -19,5 +19,5 @@
     "noEmit": true
   },
   "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "include": ["./script/image.d.ts", "**/*.ts", "**/*.tsx"]
 }
