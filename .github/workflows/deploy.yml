@@ -19,7 +19,7 @@ jobs:
 
       - run: yarn install --frozen-lockfile
 
-      - run: CI=false && yarn build
+      - run: CI=false PUBLIC_URL=/geo-food/ yarn build
         env:
           REACT_APP_GMAP_API_KEY: ${{ secrets.REACT_APP_GMAP_API_KEY }}
           REACT_APP_TURTLEQUEUE_API_KEY: ${{ secrets.REACT_APP_TURTLEQUEUE_API_KEY }}
