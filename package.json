@@ -10,7 +10,6 @@
   "dependencies": {
     "@emotion/core": "10.0.28",
     "@emotion/styled": "10.0.27",
-    "turtlequeue": "0.0.20",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -21,6 +20,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
+    "turtlequeue": "0.0.20",
     "typescript": "~3.7.2"
   },
   "scripts": {
@@ -44,5 +44,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "prettier": "2.0.5"
   }
 }

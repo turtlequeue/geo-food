@@ -10,24 +10,24 @@ import fries64 from "../../asset/image/1f355-64.png";
 import taco64 from "../../asset/image/1f35f-64.png";
 
 export const food_image = {
-    taco,
-    fries,
-    pizza,
-    burrito
+  taco,
+  fries,
+  pizza,
+  burrito,
 };
 
 export const food_image_small = {
-    taco: taco64,
-    fries: fries64,
-    pizza: pizza64,
-    burrito: burrito64
+  taco: taco64,
+  fries: fries64,
+  pizza: pizza64,
+  burrito: burrito64,
 };
 
 interface FoodIconInterface {
-    food: "taco" | "fries" | "pizza" | "burrito"
+  food: "taco" | "fries" | "pizza" | "burrito";
 }
 export const FoodIcon = ({ food, ...props }: FoodIconInterface) => (
-    <Img {...props} alt={`${food} icon`} src={food_image_small[food]} />
+  <Img {...props} alt={`${food} icon`} src={food_image_small[food]} />
 );
 
 const Img = styled.img`

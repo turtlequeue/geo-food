@@ -3,14 +3,14 @@ import styled from "@emotion/styled";
 import { food_image_small, FoodIcon } from "../FoodIcon";
 
 export const SendBar = ({ publish }) => (
-    <Container>
-        <GroupButton>
-            {Object.keys(food_image_small).map(food => (
-                // @ts-ignore
-                <FoodButton key={food} food={food} onClick={() => publish(food)} />
-            ))}
-        </GroupButton>
-    </Container>
+  <Container>
+    <GroupButton>
+      {Object.keys(food_image_small).map((food) => (
+        // @ts-ignore
+        <FoodButton key={food} food={food} onClick={() => publish(food)} />
+      ))}
+    </GroupButton>
+  </Container>
 );
 
 const FoodButton = styled(FoodIcon)`

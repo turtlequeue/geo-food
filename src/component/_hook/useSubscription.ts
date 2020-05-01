@@ -5,136 +5,133 @@ import { useState } from "react";
 import useConstant from "./useConstant";
 
 export const useSubscription = (
-    userToken: string,
-    apiKey: string,
-    channel: string,
-    location: Location
+  userToken: string,
+  apiKey: string,
+  channel: string,
+  location: Location
 ) => {
-    // hold the events
-    const [events, setEvents] = useState<Event[]>([]);
-    const pushEvent = (e: Event) =>
-        setEvents(
-            [...events, e]
+  // hold the events
+  const [events, setEvents] = useState<Event[]>([]);
+  const pushEvent = (e: Event) =>
+    setEvents(
+      [...events, e]
 
-                // re-sort by date
-                .sort((a, b) => a.date - b.date)
+        // re-sort by date
+        .sort((a, b) => a.date - b.date)
 
-                // remove duplicate (based on key)
-                .filter((x, i, arr) => i === arr.findIndex(u => u.key === x.key))
-        );
-
-    // instanciate the queue object
-    const queue = useConstant(() =>
-        turtlequeue.create.make({
-            host: "turtlequeue.com",
-            type: "ws",
-            protocol: "https"
-        })
+        // remove duplicate (based on key)
+        .filter((x, i, arr) => i === arr.findIndex((u) => u.key === x.key))
     );
 
-    // handle status lifecycle
-    const [status, setStatus] = useState<Status>("disconnected");
-    useEffect(() => {
-        const onReady = () => setStatus("ready");
-        const onConnect = () =>
-            setStatus(s => (s === "ready" ? "ready" : "connected"));
-        const onDisconnect = () => setStatus("disconnected");
+  // instanciate the queue object
+  const queue = useConstant(() =>
+    turtlequeue.create.make({
+      host: "turtlequeue.com",
+      type: "ws",
+      protocol: "https",
+    })
+  );
 
-        queue.on("ready", onReady);
-        queue.on("connect", onConnect);
-        queue.on("disconnect", onDisconnect);
+  // handle status lifecycle
+  const [status, setStatus] = useState<Status>("disconnected");
+  useEffect(() => {
+    const onReady = () => setStatus("ready");
+    const onConnect = () =>
+      setStatus((s) => (s === "ready" ? "ready" : "connected"));
+    const onDisconnect = () => setStatus("disconnected");
 
-        return () => {
-            queue.unbind("ready", onReady);
-            queue.unbind("connect", onConnect);
-            queue.unbind("disconnect", onDisconnect);
-        };
-    }, [queue]);
+    queue.on("ready", onReady);
+    queue.on("connect", onConnect);
+    queue.on("disconnect", onDisconnect);
 
-    // connect once
-    useEffect(() => {
-        queue.connect({ userToken, apiKey });
+    return () => {
+      queue.unbind("ready", onReady);
+      queue.unbind("connect", onConnect);
+      queue.unbind("disconnect", onDisconnect);
+    };
+  }, [queue]);
 
-        return () => {
-            queue.disconnect();
-        };
-    }, [userToken, apiKey]);
+  // connect once
+  useEffect(() => {
+    queue.connect({ userToken, apiKey });
 
-    // subscribe
-    useEffect(() => {
-        if (status !== "ready") return;
+    return () => {
+      queue.disconnect();
+    };
+  }, [userToken, apiKey]);
 
-        const onMessage = (error: Error | null, data: any, _meta: any) => {
-            if (isEvent(data)) pushEvent(data);
-        };
+  // subscribe
+  useEffect(() => {
+    if (status !== "ready") return;
 
-        const options = { channel };
-
-        queue.subscribe(options, onMessage);
-
-        return () => {
-            queue.unsubscribe(options, onMessage);
-        };
-    }, [status, channel, location]);
-
-    //
-    const publish = (food: Food) => {
-        if (status !== "ready") return;
-
-        const event = {
-            food,
-            key: generateRandomKey(),
-            date: Date.now(),
-            location
-        };
-
-        // in order to provide an instant feedback,
-        // push the event into the list right away,
-        // without waiting for the request to come back
-        // (it will be filtered based on the key to not appear twice)
-        pushEvent(event);
-
-        // publish
-        return new Promise((resolve, reject) => {
-            queue.publish(
-                { payload: event, channel },
-                (err: Error | null, _data: any, _metadata: any) => {
-                    if (err) reject(err);
-                    else resolve();
-                }
-            );
-        });
+    const onMessage = (error: Error | null, data: any, _meta: any) => {
+      if (isEvent(data)) pushEvent(data);
     };
 
-    return { publish, status, events };
+    const options = { channel };
+
+    queue.subscribe(options, onMessage);
+
+    return () => {
+      queue.unsubscribe(options, onMessage);
+    };
+  }, [status, channel, location]);
+
+  //
+  const publish = (food: Food) => {
+    if (status !== "ready") return;
+
+    const event = {
+      food,
+      key: generateRandomKey(),
+      date: Date.now(),
+      location,
+    };
+
+    // in order to provide an instant feedback,
+    // push the event into the list right away,
+    // without waiting for the request to come back
+    // (it will be filtered based on the key to not appear twice)
+    pushEvent(event);
+
+    // publish
+    return new Promise((resolve, reject) => {
+      queue.publish(
+        { payload: event, channel },
+        (err: Error | null, _data: any, _metadata: any) => {
+          if (err) reject(err);
+          else resolve();
+        }
+      );
+    });
+  };
+
+  return { publish, status, events };
 };
 
-const generateRandomKey = () =>
-    Math.random()
-        .toString(16)
-        .slice(2);
+const generateRandomKey = () => Math.random().toString(16).slice(2);
 
 type Food = "taco" | "fries" | "pizza" | "burrito";
 
 type Status =
-    //
-    | "disconnected"
+  //
+  | "disconnected"
 
-    // the server answered and the handshake happened
-    | "connected"
+  // the server answered and the handshake happened
+  | "connected"
 
-    // the server authorised the credentials
-    | "ready";
+  // the server authorised the credentials
+  | "ready";
 
 type Location = { lat: number; lon: number };
 
 type Event = {
-    key: string;
-    date: number;
-    food: Food;
-    location: Location;
+  key: string;
+  date: number;
+  food: Food;
+  location: Location;
 };
 
 // return true if the object shape looks like an event (roughly)
 const isEvent = (x: any): x is Event =>
-    typeof x.key === "string" && typeof x.food === "string" && x.location;
+  typeof x.key === "string" && typeof x.food === "string" && x.location;
