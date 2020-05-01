@@ -47,8 +47,8 @@ const rotateAnim = Array.from(Object.keys(food_image_small)).map(
   }
 );
 
-// @ts-ignore
-const Ball = styled(FoodIcon)`animation: ${(props) => rotateAnim[props.i]} 1500ms infinite linear;
+const Ball = styled(FoodIcon)<{ i: number }>`
+  animation: ${(props) => rotateAnim[props.i]} 1500ms infinite linear;
   width: 50px;
   height: 50px;
   position: absolute;
