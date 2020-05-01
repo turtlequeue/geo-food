@@ -1,4 +1,4 @@
-import React , {ImgHTMLAttributes} from "react";
+import React, { ImgHTMLAttributes } from "react";
 import styled from "@emotion/styled";
 import pizza from "../../asset/image/1f32e.png";
 import burrito from "../../asset/image/1f32f.png";
@@ -27,7 +27,10 @@ interface FoodIconInterface {
   food: "taco" | "fries" | "pizza" | "burrito";
 }
 
-export const FoodIcon = ({ food, ...props }: FoodIconInterface & ImgHTMLAttributes<any>) => (
+export const FoodIcon = ({
+  food,
+  ...props
+}: FoodIconInterface & ImgHTMLAttributes<any>) => (
   <Img {...props} alt={`${food} icon`} src={food_image_small[food]} />
 );
 
