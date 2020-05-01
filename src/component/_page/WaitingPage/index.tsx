@@ -6,8 +6,7 @@ import { keyframes } from "@emotion/core";
 export const WaitingPage = () => (
   <Container>
     <Center>
-      {Object.keys(food_image_small).map((food, i) => (
-        // @ts-ignore
+      {Object.keys(food_image_small).map((food: any, i) => (
         <Ball key={food} food={food} i={i} />
       ))}
     </Center>
