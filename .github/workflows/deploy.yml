@@ -19,7 +19,7 @@ jobs:
 
       - run: yarn install --frozen-lockfile
 
-      - run: yarn build
+      - run: CI=false && yarn build
         env:
           REACT_APP_GMAP_API_KEY: ${{ secrets.GMAP_API_KEY }}
           REACT_APP_TURTLEQUEUE_API_KEY: ${{ secrets.TURTLEQUEUE_API_KEY }}
