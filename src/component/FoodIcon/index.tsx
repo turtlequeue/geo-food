@@ -26,6 +26,7 @@ export const food_image_small = {
 interface FoodIconInterface {
   food: "taco" | "fries" | "pizza" | "burrito";
 }
+
 export const FoodIcon = ({ food, ...props }: FoodIconInterface) => (
   <Img {...props} alt={`${food} icon`} src={food_image_small[food]} />
 );
