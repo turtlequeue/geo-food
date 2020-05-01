@@ -2,6 +2,7 @@
   "name": "geo-food",
   "version": "4.0.0",
   "description": "Tasty demo for turtlequeue event subscription sdk 🌯",
+  "homepage": "https://turtlequeue.github.io/geo-food/",
   "author": {
     "name": "platane",
     "email": "me@platane.me",
