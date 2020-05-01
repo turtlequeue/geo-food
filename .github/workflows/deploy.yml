@@ -21,9 +21,9 @@ jobs:
 
       - run: CI=false && yarn build
         env:
-          REACT_APP_GMAP_API_KEY: ${{ secrets.GMAP_API_KEY }}
-          REACT_APP_TURTLEQUEUE_API_KEY: ${{ secrets.TURTLEQUEUE_API_KEY }}
-          REACT_APP_TURTLEQUEUE_USER_TOKEN: ${{ secrets.TURTLEQUEUE_USER_TOKEN }}
+          REACT_APP_GMAP_API_KEY: ${{ secrets.REACT_APP_GMAP_API_KEY }}
+          REACT_APP_TURTLEQUEUE_API_KEY: ${{ secrets.REACT_APP_TURTLEQUEUE_API_KEY }}
+          REACT_APP_TURTLEQUEUE_USER_TOKEN: ${{ secrets.REACT_APP_TURTLEQUEUE_USER_TOKEN }}
           PUBLIC_PATH: /geo-food/
 
       - uses: crazy-max/ghaction-github-pages@068e494
