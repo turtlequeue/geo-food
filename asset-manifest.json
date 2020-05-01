@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/geo-food/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/geo-food/static/js/main.a69cf816.chunk.js",
+    "main.js.map": "/geo-food/static/js/main.a69cf816.chunk.js.map",
+    "runtime-main.js": "/geo-food/static/js/runtime-main.2ee28902.js",
+    "runtime-main.js.map": "/geo-food/static/js/runtime-main.2ee28902.js.map",
+    "static/js/2.6f9f792f.chunk.js": "/geo-food/static/js/2.6f9f792f.chunk.js",
+    "static/js/2.6f9f792f.chunk.js.map": "/geo-food/static/js/2.6f9f792f.chunk.js.map",
+    "index.html": "/geo-food/index.html",
+    "precache-manifest.40eab62fc40625cf775a16c11a4cd60d.js": "/geo-food/precache-manifest.40eab62fc40625cf775a16c11a4cd60d.js",
+    "service-worker.js": "/geo-food/service-worker.js",
+    "static/css/main.5ecd60fb.chunk.css.map": "/geo-food/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.6f9f792f.chunk.js.LICENSE.txt": "/geo-food/static/js/2.6f9f792f.chunk.js.LICENSE.txt",
+    "static/media/1f32e-64.png": "/geo-food/static/media/1f32e-64.b31f1c87.png",
+    "static/media/1f32e.png": "/geo-food/static/media/1f32e.e7199aab.png",
+    "static/media/1f32f-64.png": "/geo-food/static/media/1f32f-64.56080a62.png",
+    "static/media/1f32f.png": "/geo-food/static/media/1f32f.8eeb3ae7.png",
+    "static/media/1f355-64.png": "/geo-food/static/media/1f355-64.bfd42f29.png",
+    "static/media/1f355.png": "/geo-food/static/media/1f355.3be17955.png",
+    "static/media/1f35f-64.png": "/geo-food/static/media/1f35f-64.1832e238.png",
+    "static/media/1f35f.png": "/geo-food/static/media/1f35f.e342aa65.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2ee28902.js",
+    "static/js/2.6f9f792f.chunk.js",
+    "static/css/main.5ecd60fb.chunk.css",
+    "static/js/main.a69cf816.chunk.js"
+  ]
+}
