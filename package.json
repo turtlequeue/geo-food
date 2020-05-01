@@ -24,6 +24,7 @@
     "typescript": "~3.7.2"
   },
   "scripts": {
+    "type": "tsc --noEmit",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
