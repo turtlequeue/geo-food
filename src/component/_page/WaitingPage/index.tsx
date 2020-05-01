@@ -6,7 +6,7 @@ import { keyframes } from "@emotion/core";
 export const WaitingPage = () => (
   <Container>
     <Center>
-      {Object.keys(food_image_small).map((food, i) => (
+      {Object.keys(food_image_small).map((food: any, i) => (
         <Ball key={food} food={food} i={i} />
       ))}
     </Center>
@@ -27,7 +27,7 @@ const rotateAnim = Array.from(Object.keys(food_image_small)).map(
         const k = (b + a + 0.75) % 1;
         const s = 0.2 + Math.abs(k - 0.5) * 2.8;
 
-        const fl = x => Math.round(x * 100) / 100;
+        const fl = (x: number) => Math.round(x * 100) / 100;
 
         return [
           Math.round(b * 100) + "%",
@@ -37,7 +37,7 @@ const rotateAnim = Array.from(Object.keys(food_image_small)).map(
             Math.sin(phy) * A
           )}px,0)`,
           `scale(${s},${s})`,
-          "}"
+          "}",
         ].join(" ");
       })
       .join("\n");
@@ -46,12 +46,12 @@ const rotateAnim = Array.from(Object.keys(food_image_small)).map(
   }
 );
 
-const Ball = styled(FoodIcon)`
+const Ball = styled(FoodIcon)<{ i: number }>`
+  animation: ${(props) => rotateAnim[props.i]} 1500ms infinite linear;
   width: 50px;
   height: 50px;
   position: absolute;
   transform-origin: center;
-  animation: ${props => rotateAnim[props.i]} 1500ms infinite linear;
   z-index: 2;
 `;
 

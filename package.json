@@ -1,43 +1,53 @@
 {
   "name": "geo-food",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Tasty demo for turtlequeue event subscription sdk 🌯",
+  "homepage": "https://turtlequeue.github.io/geo-food/",
   "author": {
     "name": "platane",
     "email": "me@platane.me",
     "twitter": "platane_"
   },
-  "repository": "github:turtlequeue/geo-food",
   "dependencies": {
-    "@emotion/core": "10.0.27",
+    "@emotion/core": "10.0.28",
     "@emotion/styled": "10.0.27",
-    "react": "16.12.0",
-    "react-dom": "16.12.0",
-    "turtlequeue": "0.0.18"
-  },
-  "devDependencies": {
-    "@babel/cli": "7.8.4",
-    "@babel/core": "7.8.4",
-    "@babel/preset-env": "7.8.4",
-    "@babel/preset-react": "7.8.3",
-    "@babel/preset-typescript": "7.8.3",
-    "@emotion/babel-preset-css-prop": "10.0.27",
-    "@types/react": "16.9.19",
-    "@types/react-dom": "16.9.5",
-    "babel-loader": "8.0.6",
-    "babel-plugin-inline-dotenv": "1.5.0",
-    "file-loader": "5.0.2",
-    "html-webpack-plugin": "3.2.0",
-    "prettier": "1.19.1",
-    "typescript": "3.7.5",
-    "webpack": "4.41.5",
-    "webpack-cli": "3.3.10",
-    "webpack-dev-server": "3.10.3"
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1",
+    "turtlequeue": "0.0.20",
+    "typescript": "~3.7.2"
   },
   "scripts": {
     "type": "tsc --noEmit",
-    "lint": "yarn prettier -c '**/*.{ts,tsx,js,jsx,json,md}' '!dist/**'",
-    "dev": "webpack-dev-server --mode development --config ./script/webpack.config.js",
-    "build": "NODE_ENV=production webpack --mode production --config ./script/webpack.config.js"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "lint": "yarn prettier -c '**/*.{ts,tsx,js,jsx,json,md}'",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "prettier": "2.0.5"
   }
 }

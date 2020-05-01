@@ -3,17 +3,17 @@ import { useState, useEffect } from "react";
 const getUserCoord = (): Promise<Coordinates> =>
   new Promise((resolve, reject) =>
     navigator.geolocation.getCurrentPosition(
-      x => resolve(x.coords),
-      err => reject(err),
+      (x) => resolve(x.coords),
+      (err) => reject(err),
       {
-        timeout: 10000
+        timeout: 10000,
       }
     )
   );
 
 const defaultLocation = {
   lat: 60.2353439 + Math.random() * 0.01,
-  lon: 7.604292 + Math.random() * 0.01
+  lon: 7.604292 + Math.random() * 0.01,
 };
 
 export const useLocation = () => {
@@ -22,7 +22,7 @@ export const useLocation = () => {
   const located = location !== defaultLocation;
 
   useEffect(() => {
-    getUserCoord().then(x =>
+    getUserCoord().then((x) =>
       setLocation({ lat: x.latitude, lon: x.longitude })
     );
   }, []);

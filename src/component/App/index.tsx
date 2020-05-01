@@ -11,6 +11,14 @@ const TURTLEQUEUE_API_KEY = process.env.TURTLEQUEUE_API_KEY as string;
 const TURTLEQUEUE_CHANNEL = "#food";
 const GMAP_API_KEY = process.env.GMAP_API_KEY as string;
 
+console.log(
+  "CONFIGS ARE",
+  process.env.NODE_ENV,
+  TURTLEQUEUE_USER_TOKEN,
+  TURTLEQUEUE_API_KEY,
+  GMAP_API_KEY
+);
+
 export const App = () => {
   const googleMapReady = useGoogleApi(GMAP_API_KEY);
   const { location } = useLocation();

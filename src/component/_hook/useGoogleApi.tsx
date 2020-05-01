@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 
-const loadScript = apiKey =>
+const loadScript = (apiKey: string) =>
   new Promise((resolve, reject) => {
     const script = document.createElement("script");
 
     script.addEventListener("load", resolve);
 
-    script.src = `https://maps.googleapis.com/maps/api/js?v=3.37&key=${apiKey}`;
+    script.src = `https://maps.googleapis.com/maps/api/js?v=3.40&key=${apiKey}`;
     script.id = "google-map-script";
 
     document.body.appendChild(script);
@@ -14,7 +14,7 @@ const loadScript = apiKey =>
 
 let loadScriptPromise: Promise<void>;
 
-export const useGoogleApi = apiKey => {
+export const useGoogleApi = (apiKey: string) => {
   const [loaded, setLoaded] = useState(false);
   const [k, setK] = useState(1);
 
@@ -32,7 +32,7 @@ export const useGoogleApi = apiKey => {
 
     if (google) return;
 
-    const cancel = requestAnimationFrame(() => setK(k => k + 1));
+    const cancel = requestAnimationFrame(() => setK((k) => k + 1));
 
     return () => cancelAnimationFrame(cancel);
   }, [k, loaded]);

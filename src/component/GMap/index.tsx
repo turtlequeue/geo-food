@@ -32,7 +32,7 @@ export const GMap = ({ events, center, googleApiKey }) => {
       center: new googleApi.maps.LatLng(center.lat, center.lon),
       mapTypeId: "roadmap",
       background: "#ddd",
-      styles: gmapStyles
+      styles: gmapStyles,
     });
   }, [ref.current, googleApi]);
 
@@ -60,7 +60,7 @@ export const GMap = ({ events, center, googleApiKey }) => {
   return <div ref={ref} style={{ width: "100%", height: "100%" }} />;
 };
 
-const wait = delay => new Promise(resolve => setTimeout(resolve, delay));
+const wait = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 
 const addMarker = async (
   googleApi,
@@ -72,7 +72,7 @@ const addMarker = async (
   const marker = new googleApi.maps.Marker({
     position: { lat: lat, lng: lon },
     icon: url,
-    map
+    map,
   });
 
   marker.setOpacity(0);
@@ -83,7 +83,7 @@ const addMarker = async (
 
   const elements = document.querySelectorAll(`[src="${url}"]`);
 
-  elements.forEach(el => {
+  elements.forEach((el) => {
     if (!el.parentElement) return;
 
     el.parentElement.animate(
@@ -91,33 +91,33 @@ const addMarker = async (
         {
           offset: 0,
           opacity: 0.6,
-          transform: "translate3d(0,0,0) scale(0.2,0.2)"
+          transform: "translate3d(0,0,0) scale(0.2,0.2)",
         },
         {
           offset: 0.032,
           opacity: 1,
-          transform: "translate3d(0,-50px,0) scale(1.3,1.3)"
+          transform: "translate3d(0,-50px,0) scale(1.3,1.3)",
         },
         {
           offset: 0.06,
           opacity: 1,
-          transform: "translate3d(0,-10px,0) scale(0.7,0.7)"
+          transform: "translate3d(0,-10px,0) scale(0.7,0.7)",
         },
         {
           offset: 0.08,
           opacity: 1,
-          transform: "translate3d(0,-160px,0) scale(1,1)"
+          transform: "translate3d(0,-160px,0) scale(1,1)",
         },
         {
           offset: 0.1,
           opacity: 0,
-          transform: "translate3d(0,-200px,0) scale(0.6,0.6)"
+          transform: "translate3d(0,-200px,0) scale(0.6,0.6)",
         },
         {
           offset: 1,
           opacity: 0,
-          transform: "scale(0.6,0.6)"
-        }
+          transform: "scale(0.6,0.6)",
+        },
       ],
       { duration: 7400 }
     );

@@ -20,7 +20,7 @@ export const useSubscription = (
         .sort((a, b) => a.date - b.date)
 
         // remove duplicate (based on key)
-        .filter((x, i, arr) => i === arr.findIndex(u => u.key === x.key))
+        .filter((x, i, arr) => i === arr.findIndex((u) => u.key === x.key))
     );
 
   // instanciate the queue object
@@ -28,7 +28,7 @@ export const useSubscription = (
     turtlequeue.create.make({
       host: "turtlequeue.com",
       type: "ws",
-      protocol: "https"
+      protocol: "https",
     })
   );
 
@@ -37,7 +37,7 @@ export const useSubscription = (
   useEffect(() => {
     const onReady = () => setStatus("ready");
     const onConnect = () =>
-      setStatus(s => (s === "ready" ? "ready" : "connected"));
+      setStatus((s) => (s === "ready" ? "ready" : "connected"));
     const onDisconnect = () => setStatus("disconnected");
 
     queue.on("ready", onReady);
@@ -64,7 +64,7 @@ export const useSubscription = (
   useEffect(() => {
     if (status !== "ready") return;
 
-    const onMessage = (error: Error | null, data, _meta) => {
+    const onMessage = (error: Error | null, data: any, _meta: any) => {
       if (isEvent(data)) pushEvent(data);
     };
 
@@ -85,7 +85,7 @@ export const useSubscription = (
       food,
       key: generateRandomKey(),
       date: Date.now(),
-      location
+      location,
     };
 
     // in order to provide an instant feedback,
@@ -98,7 +98,7 @@ export const useSubscription = (
     return new Promise((resolve, reject) => {
       queue.publish(
         { payload: event, channel },
-        (err: Error | null, _data, _metadata) => {
+        (err: Error | null, _data: any, _metadata: any) => {
           if (err) reject(err);
           else resolve();
         }
@@ -109,10 +109,7 @@ export const useSubscription = (
   return { publish, status, events };
 };
 
-const generateRandomKey = () =>
-  Math.random()
-    .toString(16)
-    .slice(2);
+const generateRandomKey = () => Math.random().toString(16).slice(2);
 
 type Food = "taco" | "fries" | "pizza" | "burrito";
 
