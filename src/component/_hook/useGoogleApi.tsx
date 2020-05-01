@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const loadScript = apiKey =>
+const loadScript = (apiKey: string) =>
     new Promise((resolve, reject) => {
         const script = document.createElement("script");
 
@@ -14,7 +14,7 @@ const loadScript = apiKey =>
 
 let loadScriptPromise: Promise<void>;
 
-export const useGoogleApi = apiKey => {
+export const useGoogleApi = (apiKey: string) => {
     const [loaded, setLoaded] = useState(false);
     const [k, setK] = useState(1);
 
