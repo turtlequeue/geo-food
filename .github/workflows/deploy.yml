@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - master
-      - feat/v3
+      - feature/bump-stuff-use-react-scripts
 
 jobs:
   deploy:
